@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroTech</title>
+    <!-- Embedded CSS -->
+    <style>
+        /* --- HEADER & NAV --- */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        header nav ul {
+            display: flex;
+            list-style: none;
+            background: #222;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        header nav ul li {
+            margin: 0 20px;
+        }
+        header nav ul li.logo img {
+            height: 40px;
+        }
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* --- PRODUCTS --- */
+        .products-layout {
+            padding: 40px 0;
+            background: #fff;
+        }
+        .products-wrapper {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .category-button {
+            padding: 10px 20px;
+            background: #eee;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .category-button.active, .category-button:hover {
+            background: #0078d4;
+            color: #fff;
+        }
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 900px;
+        }
+        .products-item {
+            background: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            width: 210px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .products-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        .products-content {
+            padding: 15px;
+            text-align: center;
+        }
+        .rating {
+            margin-top: 8px;
+            color: #f5b50a;
+        }
+        /* --- SERVICES --- */
+        .services-layout {
+            padding: 40px 0;
+            background: #fff;
+        }
+        .services-grid {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+        .services-item {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .services-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(34,34,34,0.8);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .details-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #0078d4;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .details-btn:hover {
+            background: #005fa3;
+        }
+        /* --- INSTALLATION --- */
+        .service-details .banner {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        .service-details .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .banner-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .banner-overlay h1 {
+            color: #fff;
+            font-size: 2.5rem;
+        }
+        .banner-description {
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .content-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .left-content img {
+            width: 300px;
+            border-radius: 8px;
+        }
+        .right-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        .right-content li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+        /* --- ABOUT --- */
+        .about-section {
+            padding: 40px 0;
+            background: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            font-size: 1.1rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li class="logo"><img src="Img/logo.webp" alt="MICROTECH Logo"></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+            </ul>
+        </nav>  
+    </header>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="products-layout">
+        <h2>Our Products</h2>
+        <div class="products-wrapper">
+            <div class="sidebar">
+                <button class="category-button active" onclick="filterCategory('all')">All Products</button>
+                <button class="category-button" onclick="filterCategory('gps')">GPS Tracking</button>
+                <button class="category-button" onclick="filterCategory('rfid')">RFID</button>
+                <button class="category-button" onclick="filterCategory('network')">Networking Devices</button>
+                <button class="category-button" onclick="filterCategory('accessories')">Accessories</button>
+            </div>
+            <div class="products-container">
+                <!-- Paste all your products-item divs here from Products.html -->
+                <!-- Example: -->
+                <div class="products-item gps">
+                    <img src="img/gpstracker.webp" alt="GPS Tracker" class="products-image">
+                    <div class="products-content">
+                        <h3>GPS Tracker</h3>
+                        <p>Real-time GPS tracking for vehicles and pets.</p>
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <!-- ... (add all other products here) ... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MAINTENANCE SECTION -->
+    <section id="maintenance" class="service-details">
+        <div class="banner">
+            <img src="Img/ms.webp" alt="Maintenance Banner">
+            <div class="banner-overlay">
+                <h1>Maintenance and Support</h1>
+            </div>
+        </div>
+        <p class="banner-description">
+            <!-- Paste your maintenance description here from maintenance.html -->
+            Keep your IT systems running smoothly! Our maintenance and support services cover troubleshooting, repairs, updates, and ongoing technical assistance for all your hardware and software needs.
+        </p>
+        <div class="content-container">
+            <div class="left-content">
+                <img src="Img/mss.webp" alt="Maintenance Image">
+            </div>
+            <div class="right-content">
+                <ul>
+                    <li>✅ Preventive Maintenance</li>
+                    <li>✅ Troubleshooting and Repairs</li>
+                    <li>✅ Software Updates and Upgrades</li>
+                    <li>✅ Remote and On-site Support</li>
+                    <li>✅ Emergency Assistance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- INSTALLATION SECTION -->
+    <section id="installation" class="service-details">
+        <div class="banner">
+            <img src="Img/is.webp" alt="Installation and Setup Banner">
+            <div class="banner-overlay">
+                <h1>Installation and Set Up</h1>
+            </div>
+        </div>
+        <p class="banner-description">
+            <!-- Paste your installation description here from installation.html -->
+            Get your IT hardware up and running hassle-free! Our team handles the professional installation and setup of computers, servers, and networking devices, ensuring optimal performance and seamless integration with your existing systems.
+        </p>
+        <div class="content-container">
+            <div class="left-content">
+                <img src="Img/iss.webp" alt="Installation Image">
+            </div>
+            <div class="right-content">
+                <ul>
+                    <li>✅ Hardware and Software Installation</li>
+                    <li>✅ System Configuration and Optimization</li>
+                    <li>✅ Network and Security Setup</li>
+                    <li>✅ Data Migration and Backup</li>
+                    <li>✅ User Training and Support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+        <h2>About MicroTech</h2>
+        <p>
+            <!-- Paste your about description here from About.html -->
+            MicroTech is dedicated to providing innovative IT solutions, products, and services to help businesses and individuals thrive in the digital age. Our team of experts is committed to delivering quality, reliability, and customer satisfaction.
+        </p>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="services-layout">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="services-item">
+                <img src="Img/maintenance.webp" alt="Maintenance and Support">
+                <div class="overlay">
+                    <h3>Maintenance and Support</h3>
+                    <a href="#maintenance" class="details-btn">View more details</a>
+                </div>
+            </div>
+            <div class="services-item">
+                <img src="Img/installer.webp" alt="Installation and Set Up">
+                <div class="overlay">
+                    <h3>Installation and Set Up</h3>
+                    <a href="#installation" class="details-btn">View more details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Embedded JS for Product Filtering -->
+    <script>
+        function filterCategory(category) {
+            const items = document.querySelectorAll('.products-item');
+            const buttons = document.querySelectorAll('.category-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
